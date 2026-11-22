@@ -12,7 +12,10 @@ export function usePWAInstall() {
   const [isAndroid, setIsAndroid] = useState(false);
 
   useEffect(() => {
+    const cap = (window as unknown as {Capacitor?: {isNativePlatform?: () => boolean}}).Capacitor;
+    const isNativeApp = Boolean(cap?.isNativePlatform?.());
     const isStandalone =
+      isNativeApp ||
       window.matchMedia('(display-mode: standalone)').matches ||
       (window.navigator as unknown as {standalone?: boolean}).standalone === true;
     setIsInstalled(isStandalone);

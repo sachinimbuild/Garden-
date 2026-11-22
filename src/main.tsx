@@ -8,6 +8,11 @@ async function initServiceWorker() {
     return;
   }
 
+  const cap = (window as unknown as {Capacitor?: {isNativePlatform?: () => boolean}}).Capacitor;
+  if (cap?.isNativePlatform?.()) {
+    return;
+  }
+
   const isDev = import.meta.env.DEV;
   const swUrl = isDev ? '/dev-sw.js?dev-sw' : '/sw.js';
 

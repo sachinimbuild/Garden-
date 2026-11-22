@@ -106,13 +106,19 @@ export const GARDEN_ACTIONS: GardenActionItem[] = [
   },
 ];
 
+export function isNativeCapacitorApp(): boolean {
+  if (typeof window === 'undefined') return false;
+  const cap = (window as unknown as {Capacitor?: {isNativePlatform?: () => boolean}}).Capacitor;
+  return Boolean(cap?.isNativePlatform?.());
+}
+
 export function isAndroidDevice(): boolean {
   if (typeof navigator === 'undefined') return false;
   return /android/i.test(navigator.userAgent);
 }
 
 export function getResolvedActionHref(item: GardenActionItem): string {
-  if (isAndroidDevice() && item.androidIntentHref) {
+  if (!isNativeCapacitorApp() && isAndroidDevice() && item.androidIntentHref) {
     return item.androidIntentHref;
   }
   return item.href;
