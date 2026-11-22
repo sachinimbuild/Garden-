@@ -1,0 +1,8 @@
+{
+  "name": "Medicinal garden",
+  "description": "Official Android \u0026 mobile companion app for Medicinal garden Ganewaththa — instant directions via Google Maps, direct call, Gmail contact, Facebook, YouTube, and TikTok.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
